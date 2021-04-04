@@ -40,20 +40,28 @@ public class Utils {
     public ArrayList Csv_toFloat(List<String[]> args){
         ArrayList<String> e = new ArrayList<String>();
         for (String[] pessoa : args){    
-            Peso_Altura(pessoa);
+            if(Peso_altura_ok(pessoa)){                    
+            peso_altura(pessoa);                
+            }else{
+                peso_altura_null();
+            }
             Csv_toString(e, pessoa);             
         }
         return e;
     }
 
-    private void Peso_Altura(String[] pessoa) {
-        if(!pessoa[2].isEmpty() && !pessoa[3].isEmpty()){                    
-            peso = Float.parseFloat(pessoa[2].replace(",", "."));
-            altura = Float.parseFloat(pessoa[3].replace(",", "."));                
-            }else{
-                peso = 0;
-                altura = 0;
-            }
+    private boolean Peso_altura_ok(String[] pessoa) {
+        return !pessoa[2].isEmpty() && !pessoa[3].isEmpty();
+    }
+
+    private void peso_altura_null() {
+        peso = 0;
+        altura = 0;
+    }
+
+    private void peso_altura(String[] pessoa) {
+        peso = Float.parseFloat(pessoa[2].replace(",", "."));
+        altura = Float.parseFloat(pessoa[3].replace(",", "."));
     }
 
     private void Csv_toString(ArrayList<String> e, String[] pessoa) {

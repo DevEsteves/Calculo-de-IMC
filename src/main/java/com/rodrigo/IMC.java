@@ -15,7 +15,11 @@ public class IMC implements Constantes
     public static void main(String[] args) throws Exception {
         Services get = new Services();
         Utils utils = new Utils();
+        
         br = get.Get_Url(URL_CSV);
-        utils.Imprime(utils.Arquivotxt(utils.removerAcentos(utils.Csv_toString(utils.Csv_toFloat(get.GET_CSV(br))))));
+
+        utils.Imprime(utils.Arquivotxt(utils.
+        removerAcentos(utils.Csv_toString(utils.
+        Csv_toFloat(get.GET_CSV(br))))));
         }
 }
