@@ -13,7 +13,6 @@ public class Utils {
     
     public static float peso = 0;
     public static float altura = 0;
-    public static String str = "";
 
     public String removerAcentos(String args) {
         return Normalizer.normalize(args, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
@@ -41,6 +40,13 @@ public class Utils {
     public ArrayList Csv_toFloat(List<String[]> args){
         ArrayList<String> e = new ArrayList<String>();
         for (String[] pessoa : args){    
+            Peso_Altura(pessoa);
+            Csv_toString(e, pessoa);             
+        }
+        return e;
+    }
+
+    private void Peso_Altura(String[] pessoa) {
         if(!pessoa[2].isEmpty() && !pessoa[3].isEmpty()){                    
             peso = Float.parseFloat(pessoa[2].replace(",", "."));
             altura = Float.parseFloat(pessoa[3].replace(",", "."));                
@@ -48,11 +54,11 @@ public class Utils {
                 peso = 0;
                 altura = 0;
             }
-            str = StringUtils.normalizeSpace(pessoa[0].toUpperCase()) +
-            " " + StringUtils.normalizeSpace(pessoa[1].toUpperCase()) +
-            " " + String.format("%.2f",(peso / (altura*altura)));
-            e.add(str);             
-        }
-        return e;
+    }
+
+    private void Csv_toString(ArrayList<String> e, String[] pessoa) {
+        e.add(StringUtils.normalizeSpace(pessoa[0].toUpperCase()) +
+        " " + StringUtils.normalizeSpace(pessoa[1].toUpperCase()) +
+        " " + String.format("%.2f",(peso / (altura*altura))));
     }
 }
