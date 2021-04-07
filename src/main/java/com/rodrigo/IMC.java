@@ -1,7 +1,8 @@
 package com.rodrigo;
 
-import java.io.*;
-
+import java.io.BufferedReader;
+import java.util.List;
+import java.util.ArrayList;
 /**
  * Hello world!
  * 
@@ -16,10 +17,12 @@ public class IMC implements Constantes
         Services get = new Services();
         Utils utils = new Utils();
         
-        br = get.Get_Url(URL_CSV);
-
-        utils.Imprime(utils.Arquivotxt(utils.
-        removerAcentos(utils.Csv_toString(utils.
-        Csv_toFloat(get.GET_CSV(br))))));
+        br = get.Get_Archive(Arquivo);
+        List<String[]> string = get.GET_CSV(br);
+        ArrayList<String> a = utils.Csv_toFloat(string);
+        String ok = utils.Csv_toString(a);
+        String b = utils.removerAcentos(ok);
+        utils.Imprime(b);
+        utils.Arquivotxt(b);
         }
 }

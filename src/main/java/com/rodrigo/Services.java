@@ -7,6 +7,8 @@ import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import java.util.List;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -27,5 +29,10 @@ public class Services {
         URLConnection yc = stockURL.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
         return in;
+    }
+
+    public BufferedReader Get_Archive (String args) throws FileNotFoundException{
+        BufferedReader a = new BufferedReader(new FileReader("C:/Users/Estev/Documents/Desenvolvimento/Arquivo.csv"));
+        return(a);
     }
 }
